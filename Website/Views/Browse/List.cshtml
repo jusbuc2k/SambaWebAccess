@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Website.FileModel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Browse Files</h2>
+
+<ul class="file-tiles">
+@foreach (var item in Model) {
+    <li class="file-tile">
+        @if (item.IsFile){
+        <img class="thumb" src="@Url.Action("Thumb", new { file = item.FullName, size="l" })" alt="@item.Name" />
+        }
+        <span class="name">
+            @if (item.IsFile){
+            <a href="@Url.Action("Download", new { file = item.FullName })">@item.Name</a>
+            } else {
+            <a href="@Url.Action("List", new { path = item.FullName })">@item.Name</a>    
+            }
+        </span>
+        @if (item.IsFile){
+        <span class="length">@item.Length</span>
+        }
+    </li>
+}
+</ul>

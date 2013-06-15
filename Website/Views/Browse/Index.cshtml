@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Website.RootPath>
+@{
+    ViewBag.Title = "Shared Folders";
+}
+
+<h2>Shared Folders</h2>
+
+<ul class="roots">
+    @foreach (var item in Model)
+    {
+    <li><a href="@Url.Action("List",new {Path = item.Path})">@item.Path</a></li>
+    }
+</ul>
